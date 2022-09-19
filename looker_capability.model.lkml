@@ -25,10 +25,6 @@ persist_with: looker_capability_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-explore: food_data {}
 
-explore: food_products {}
-
-explore: food_info {}
 
 explore: superstore {}
