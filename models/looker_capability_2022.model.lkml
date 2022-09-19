@@ -18,7 +18,6 @@ persist_with: looker_capability_2022_default_datagroup
 explore: returned_superstore {}
 
 explore: superstore {
-view_label: "Join"
 join: returned_superstore {
   type: left_outer
   sql_on: ${returned_superstore.Order ID}= ${superstore.Order ID} ;;
