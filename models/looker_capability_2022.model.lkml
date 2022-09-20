@@ -21,6 +21,6 @@ explore: superstore {
 join: returned_superstore {
   type: left_outer
   sql_on: ${returned_superstore.Order ID}= ${superstore.Order ID} ;;
-  relationship: many_to_many
+  relationship: many_to_one
 }
 }
