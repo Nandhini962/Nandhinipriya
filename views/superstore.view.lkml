@@ -76,6 +76,25 @@ view: superstore {
     sql: ${TABLE}.Profit ;;
   }
 
+  dimension: Sales_Feedback {
+    case: {
+      when: {
+        sql: ${sales} >= 1000;;
+        label: "Excellent"
+      }
+
+      when: {
+        sql: ${sales} > 500 AND ${sales} <= 999 ;;
+        label: "Good"
+      }
+
+      when: {
+        sql: ${sales} < 100 ;;
+        label: "Low "
+      }
+      else:"Average"
+    }
+}
 
   measure: total_profit {
     type: sum
@@ -104,6 +123,7 @@ view: superstore {
 
   dimension: sales {
     type: number
+    value_format: "0"
     sql: ${TABLE}.Sales ;;
   }
 
@@ -146,4 +166,5 @@ view: superstore {
     type: count
     drill_fields: [customer_name, product_name]
   }
+
 }
