@@ -1,7 +1,6 @@
-
 view: superstore {
 
-  sql_table_name: `Nandhini_Sample.Superstore`
+  sql_table_name: Nandhini_Sample.Superstore
     ;;
 
   dimension: category {
@@ -94,7 +93,7 @@ view: superstore {
       }
       else:"Average"
     }
-}
+  }
 
   measure: total_profit {
     type: sum
