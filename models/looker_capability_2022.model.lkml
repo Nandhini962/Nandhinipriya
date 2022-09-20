@@ -20,7 +20,7 @@ explore: returned_superstore {}
 explore: superstore {
 join: returned_superstore {
   type: left_outer
-  sql_on: ${returned_superstore.Order ID}= ${superstore.Order ID} ;;
+  sql_on: ${superstore.order ID} =  ${returned_superstore.order ID} ;;
   relationship: many_to_one
 }
 }
