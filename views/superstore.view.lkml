@@ -1,7 +1,6 @@
-
 view: superstore {
 
-  sql_table_name: `Nandhini_Sample.Superstore`
+  sql_table_name: Nandhini_Sample.Superstore
     ;;
 
   dimension: category {
@@ -94,7 +93,7 @@ view: superstore {
       }
       else:"Average"
     }
-}
+  }
 
   measure: total_profit {
     type: sum
@@ -146,11 +145,12 @@ view: superstore {
     datatype: date
     sql: ${TABLE}.Ship_Date ;;
   }
-  dimension: date_diff {
-    type: date
-    sql: DATEDIFF(day,${order_date}-${ship_date}, GETDATE()) ;;
-     }
-
+  dimension_group: enrolled {
+    type: duration
+    intervals: [week, year]
+    sql_start: ${TABLE}.order_date ;;
+    sql_end: ${TABLE}.ship_date ;;
+  }
 
   dimension: ship_mode {
     type: string
