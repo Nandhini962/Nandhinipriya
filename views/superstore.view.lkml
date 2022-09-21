@@ -145,7 +145,7 @@ view: superstore {
     datatype: date
     sql: ${TABLE}.Ship_Date ;;
   }
-  dimension_group: enrolled {
+  dimension_group: Shipping_days{
     type: duration
     intervals: [day, month,week,quarter,year]
     sql_start: ${TABLE}.order_date ;;
