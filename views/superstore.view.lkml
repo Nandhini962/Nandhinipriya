@@ -145,6 +145,12 @@ view: superstore {
     datatype: date
     sql: ${TABLE}.Ship_Date ;;
   }
+  dimension_group: Shipping_days{
+    type: duration
+    intervals: [day, month,week,quarter,year]
+    sql_start: ${TABLE}.order_date ;;
+    sql_end: ${TABLE}.ship_date ;;
+  }
 
   dimension: ship_mode {
     type: string
