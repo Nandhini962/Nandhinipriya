@@ -79,19 +79,19 @@ view: superstore {
     case: {
       when: {
         sql: ${sales} >= 1000;;
-        label: "Excellent"
+        label: "Good"
       }
 
       when: {
         sql: ${sales} > 500 AND ${sales} <= 999 ;;
-        label: "Good"
+        label: "Average"
       }
 
       when: {
         sql: ${sales} < 100 ;;
         label: "Low "
       }
-      else:"Average"
+      else:"Below Average"
     }
   }
 
