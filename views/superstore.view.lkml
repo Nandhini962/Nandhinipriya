@@ -146,6 +146,11 @@ view: superstore {
     datatype: date
     sql: ${TABLE}.Ship_Date ;;
   }
+  dimension: date_diff {
+    type: date
+    sql: DATEDIFF(day,${order_date}-${ship_date}, GETDATE()) ;;
+     }
+
 
   dimension: ship_mode {
     type: string
