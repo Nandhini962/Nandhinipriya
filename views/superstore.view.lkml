@@ -147,7 +147,7 @@ view: superstore {
   }
   dimension_group: enrolled {
     type: duration
-    intervals: [week, year]
+    intervals: [day, month,week,quarter,year]
     sql_start: ${TABLE}.order_date ;;
     sql_end: ${TABLE}.ship_date ;;
   }
