@@ -31,6 +31,7 @@ view: superstore {
 
   dimension: discount {
     type: number
+    value_format: "0"
     sql: ${TABLE}.Discount ;;
   }
 
@@ -72,6 +73,7 @@ view: superstore {
 
   dimension: profit {
     type: number
+    value_format: "0"
     sql: ${TABLE}.Profit ;;
   }
 
