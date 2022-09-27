@@ -37,6 +37,15 @@ view: superstore {
     sql: ${TABLE}.Discount ;;
   }
 
+  dimension: product_name {
+    type: string
+    sql: ${TABLE}.Product_Name;;
+    drill_fields: [product_type*]
+  }
+
+  set: product_type {
+    fields: [category,sub_category,customer_name,customer_id]
+  }
 
   dimension_group: order {
     type: time
@@ -68,10 +77,7 @@ view: superstore {
     sql: ${TABLE}.Product_ID ;;
   }
 
-  dimension: product_name {
-    type: string
-    sql: ${TABLE}.Product_Name ;;
-  }
+
 
   dimension: profit {
     type: number

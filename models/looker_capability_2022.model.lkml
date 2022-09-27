@@ -19,6 +19,7 @@ explore: returned_superstore {}
 explore: superstore {
 
 
+
 join: returned_superstore {
   type: left_outer
   sql_on: ${superstore.order_id} =  ${returned_superstore.order_id} ;;
