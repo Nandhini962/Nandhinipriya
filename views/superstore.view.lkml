@@ -10,6 +10,7 @@ view: superstore {
 
   dimension: city {
     type: string
+    map_layer_name: countries
     sql: ${TABLE}.City ;;
   }
 
@@ -22,6 +23,7 @@ view: superstore {
   dimension: customer_id {
     type: string
     sql: ${TABLE}.Customer_ID ;;
+    drill_fields: [product_name, city]
   }
 
   dimension: customer_name {
@@ -147,6 +149,7 @@ view: superstore {
     datatype: date
     sql: ${TABLE}.Ship_Date ;;
   }
+
   dimension_group: Shipping_days{
     type: duration
     intervals: [day, month,week,quarter,year]
@@ -154,6 +157,24 @@ view: superstore {
     sql_end: ${TABLE}.ship_date ;;
   }
 
+
+  dimension: shippingfeedback {
+    case: {
+      when: {
+        sql: ${days_Shipping_days} >= 3;;
+        label: "Dispatched Late"
+      }
+
+      else:"Dispatched Soon"
+    }
+  }
+
+  dimension: salesrange {
+    type: bin
+    bins: [0,10,20,30,40,50,60,70,80,1000]
+    style: integer
+    sql: ${sales} ;;
+  }
   dimension: ship_mode {
     type: string
     sql: ${TABLE}.Ship_Mode ;;
