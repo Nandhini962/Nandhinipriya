@@ -1,15 +1,7 @@
-# The name of this view in Looker is "Superstore"
 view: superstore {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
-  sql_table_name: `Nandhini_Sample.Superstore`
-    ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Category" in Explore.
+  sql_table_name: Nandhini_Sample.Superstore
+    ;;
 
   dimension: category {
     type: string
@@ -42,8 +34,6 @@ view: superstore {
     sql: ${TABLE}.Discount ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: order {
     type: time
@@ -85,9 +75,25 @@ view: superstore {
     sql: ${TABLE}.Profit ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+  dimension: Sales_Feedback {
+    case: {
+      when: {
+        sql: ${sales} >= 1000;;
+        label: "Good"
+      }
+
+      when: {
+        sql: ${sales} > 500 AND ${sales} <= 999 ;;
+        label: "Average"
+      }
+
+      when: {
+        sql: ${sales} < 100 ;;
+        label: "Low "
+      }
+      else:"Below Average"
+    }
+  }
 
   measure: total_profit {
     type: sum
@@ -116,6 +122,7 @@ view: superstore {
 
   dimension: sales {
     type: number
+    value_format: "0"
     sql: ${TABLE}.Sales ;;
   }
 
@@ -138,6 +145,12 @@ view: superstore {
     datatype: date
     sql: ${TABLE}.Ship_Date ;;
   }
+  dimension_group: Shipping_days{
+    type: duration
+    intervals: [day, month,week,quarter,year]
+    sql_start: ${TABLE}.order_date ;;
+    sql_end: ${TABLE}.ship_date ;;
+  }
 
   dimension: ship_mode {
     type: string
@@ -158,4 +171,5 @@ view: superstore {
     type: count
     drill_fields: [customer_name, product_name]
   }
+
 }
