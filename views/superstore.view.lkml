@@ -178,7 +178,7 @@ view: superstore {
   dimension: salesrange {
     type: bin
     bins: [0,10,20,30,40,50,60,70,80,1000]
-    style: integer
+    style: interval
     sql: ${sales} ;;
   }
   dimension: ship_mode {
